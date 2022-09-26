@@ -2,7 +2,11 @@ version : '3'
 
 services:
   web:
-    build: .
+    build:
+      # where are the files we're going to use for the image
+      context: .
+      # what is the Dockerfile to use?
+      dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
     volumes:
