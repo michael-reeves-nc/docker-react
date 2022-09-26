@@ -15,3 +15,13 @@ services:
       # replace other contents of app with this folder
       - .:/app
 
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    # override the starting command
+    command: ["npm", "run", "test"]
+
