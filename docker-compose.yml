@@ -1,0 +1,13 @@
+version : '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      # use the node_modules folder in the image
+      - /app/node_modules
+      # replace other contents of app with this folder
+      - .:/app
+
