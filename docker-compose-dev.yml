@@ -1,0 +1,27 @@
+version : '3'
+
+services:
+  web:
+    build:
+      # where are the files we're going to use for the image
+      context: .
+      # what is the Dockerfile to use?
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      # use the node_modules folder in the image
+      - /app/node_modules
+      # replace other contents of app with this folder
+      - .:/app
+
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    # override the starting command
+    command: ["npm", "run", "test"]
+
